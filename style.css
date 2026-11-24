@@ -1,0 +1,109 @@
+/* Resets the page for a clean look */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Styles the whole page */
+body {
+    background-color: #f4f4f9;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+
+/* --- THE GRID LAYOUT --- */
+.gallery {
+    display: grid;
+    /* This creates a responsive grid. On big screens it shows multiple, on phones it shows 1 */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Style for the small images in the grid */
+.gallery img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover; /* Prevents images from stretching weirdly */
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Makes the hover effect smooth */
+}
+
+/* HOVER EFFECT: When you put your mouse over an image */
+.gallery img:hover {
+    transform: scale(1.05); /* Zooms in slightly */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Adds a shadow */
+}
+
+/* --- THE LIGHTBOX (POP-UP) --- */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Dark semi-transparent background */
+    display: none; /* Hidden by default, JavaScript will show it */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* When JavaScript turns the lightbox on, it adds this class */
+.lightbox.active {
+    display: flex; 
+}
+
+/* The big image inside the lightbox */
+#lightbox-img {
+    max-width: 90%;
+    max-height: 80vh; /* 80% of the screen height */
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* The Close Button (X) */
+.close {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: white;
+    font-size: 50px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close:hover {
+    color: #ff9500;
+}
+
+/* The Next and Previous Arrows */
+.prev, .next {
+    position: absolute;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 50px;
+    cursor: pointer;
+    padding: 20px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
+.prev:hover, .next:hover {
+    color: #ff9500;
+    transform: scale(1.2);
+}
